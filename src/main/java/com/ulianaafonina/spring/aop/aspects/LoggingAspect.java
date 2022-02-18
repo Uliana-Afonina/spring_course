@@ -11,7 +11,7 @@ import java.util.Arrays;
 @Aspect
 public class LoggingAspect {
 
-    @Before("execution (public void getBook())")
+    @Before("execution (public void get*())")
     public void beforeGetBookAdvice () {
         Logger.info("Попытка получить книгу.");
 //        System.out.println("Попытка получить книгу.");

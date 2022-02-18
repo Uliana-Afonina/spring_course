@@ -1,4 +1,5 @@
 package com.ulianaafonina.spring.aop;
 
-public class AbstractLibrary {
+public abstract class AbstractLibrary {
+    abstract public void getBook();
 }
