@@ -11,19 +11,19 @@ import java.util.Arrays;
 @Aspect
 public class LoggingAspect {
 
-    @Before("execution (public void get*())")
+    @Before("execution (public void getBook(com.ulianaafonina.spring.aop.Book))")
     public void beforeGetBookAdvice () {
         Logger.info("Попытка получить книгу.");
     }
-
-    @Before("execution (* returnBook())")
-    public String beforeReturnBookAdvice () {
-        Logger.info("Попытка вернуть книгу.");
-        return "OK";
-    }
-
-    @Before("execution (* *())")
-    public void beforeAnyMethodAdvice () {
-        Logger.info("Информационное сообщение");
-    }
+//
+//    @Before("execution (* returnBook())")
+//    public String beforeReturnBookAdvice () {
+//        Logger.info("Попытка вернуть книгу.");
+//        return "OK";
+//    }
+//
+//    @Before("execution (* *())")
+//    public void beforeAnyMethodAdvice () {
+//        Logger.info("Информационное сообщение");
+//    }
 }
