@@ -11,7 +11,7 @@ public class UniversityLibrary extends AbstractLibrary{
         Logger.info("Мы берём книгу из UniversityLibrary.");
     }
 
-    public void returnBook() {
+    protected void returnBook() {
         Logger.info("Возвращаем книгу в UniversityLibrary.");
     }
 

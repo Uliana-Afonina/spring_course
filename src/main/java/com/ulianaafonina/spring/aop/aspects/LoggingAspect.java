@@ -21,4 +21,9 @@ public class LoggingAspect {
         Logger.info("Попытка вернуть книгу.");
         return "OK";
     }
+
+    @Before("execution (* *())")
+    public void beforeAnyMethodAdvice () {
+        Logger.info("Информационное сообщение");
+    }
 }
