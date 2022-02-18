@@ -6,8 +6,13 @@ public class Test1 {
     public static void main(String[] args) {
         AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(com.ulianaafonina.spring.aop.MyConfig.class);
 
-        Library library = context.getBean("libraryBean" ,Library.class);
-        library.getBook();
+        UniversityLibrary universityLibrary = context.getBean("universityLibraryBean" , UniversityLibrary.class);
+        universityLibrary.getBook();
+        universityLibrary.returnBook();
+        universityLibrary.getMagazine();
+
+        SchoolLibrary schoolLibrary = context.getBean("schoolLibraryBean", SchoolLibrary.class);
+        schoolLibrary.getBook();
 
         context.close();
     }
