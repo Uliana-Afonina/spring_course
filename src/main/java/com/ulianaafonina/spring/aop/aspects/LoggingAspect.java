@@ -14,6 +14,10 @@ public class LoggingAspect {
     @Before("execution (public void get*())")
     public void beforeGetBookAdvice () {
         Logger.info("Попытка получить книгу.");
-//        System.out.println("Попытка получить книгу.");
+    }
+
+    @Before("execution (public void returnBook())")
+    public void beforeReturnBookAdvice () {
+        Logger.info("Попытка вернуть книгу.");
     }
 }
