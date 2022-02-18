@@ -16,8 +16,9 @@ public class LoggingAspect {
         Logger.info("Попытка получить книгу.");
     }
 
-    @Before("execution (public void returnBook())")
-    public void beforeReturnBookAdvice () {
+    @Before("execution (public * returnBook())")
+    public String beforeReturnBookAdvice () {
         Logger.info("Попытка вернуть книгу.");
+        return "OK";
     }
 }
