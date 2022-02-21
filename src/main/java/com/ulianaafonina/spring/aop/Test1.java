@@ -9,7 +9,10 @@ public class Test1 {
         UniversityLibrary universityLibrary = context.getBean("universityLibraryBean" , UniversityLibrary.class);
 //        Book book = context.getBean("book", Book.class);
         universityLibrary.getBook();
-        universityLibrary.getMagazine();
+        universityLibrary.returnMagazine();
+        universityLibrary.addBook();
+
+
 
 //        System.out.println( "\n" + book.getName());
 
