@@ -12,33 +12,51 @@ import java.util.Arrays;
 @Aspect
 public class LoggingAndSecurityAspect {
 
-    @Pointcut("execution (* com.ulianaafonina.spring.aop.UniversityLibrary.get*())")
-    private void allGetMethodsFromUniversityLibrary() {
+    @Pointcut("execution (* com.ulianaafonina.spring.aop.UniversityLibrary.*(..))")
+    //любой метод с любым количеством параметров из класса UniversityLibrary
+    private void allMethodsFromUniversityLibrary() {
     }
 
-    @Pointcut("execution (* com.ulianaafonina.spring.aop.UniversityLibrary.return*())")
-    private void allReturnMethodsFromUniversityLibrary() {
+    @Pointcut("execution (public void com.ulianaafonina.spring.aop.UniversityLibrary.returnMagazine())")
+    private void returnMagazineFromUniversityLibrary() {
     }
 
-    @Pointcut("allGetMethodsFromUniversityLibrary() || allReturnMethodsFromUniversityLibrary()")
-    private void allGetAndReturnMethodsFromUniversityLibrary() {
+    @Pointcut("allMethodsFromUniversityLibrary() && !returnMagazineFromUniversityLibrary()")
+    //все методы кроме returnMagazine()
+    private void allMethodsAcceptReturnMagazineFromUniversityLibrary() {
     }
 
-    @Before("allGetMethodsFromUniversityLibrary()")
-    public void beforeGetLoggingAdvice() {
-        Logger.info("writting Log#1");
+    @Before("allMethodsAcceptReturnMagazineFromUniversityLibrary()")
+    public void beforeAllMethodsAcceptReturnMagazineFromUniversityLibrary() {
+        Logger.info("Log#10");
     }
-
-    @Before("allReturnMethodsFromUniversityLibrary()")
-    public void beforeReturnLoggingAdvice() {
-        Logger.info("writting Log#2");
-    }
-
-    @Before("allGetAndReturnMethodsFromUniversityLibrary()")
-    public void beforeGetAndReturnLoggingAdvice(){
-        Logger.info("writting Log#3");
-    }
-
+//    @Pointcut("execution (* com.ulianaafonina.spring.aop.UniversityLibrary.get*())")
+//    private void allGetMethodsFromUniversityLibrary() {
+//    }
+//
+//    @Pointcut("execution (* com.ulianaafonina.spring.aop.UniversityLibrary.return*())")
+//    private void allReturnMethodsFromUniversityLibrary() {
+//    }
+//
+//    @Pointcut("allGetMethodsFromUniversityLibrary() || allReturnMethodsFromUniversityLibrary()")
+//    private void allGetAndReturnMethodsFromUniversityLibrary() {
+//    }
+//
+//    @Before("allGetMethodsFromUniversityLibrary()")
+//    public void beforeGetLoggingAdvice() {
+//        Logger.info("writting Log#1");
+//    }
+//
+//    @Before("allReturnMethodsFromUniversityLibrary()")
+//    public void beforeReturnLoggingAdvice() {
+//        Logger.info("writting Log#2");
+//    }
+//
+//    @Before("allGetAndReturnMethodsFromUniversityLibrary()")
+//    public void beforeGetAndReturnLoggingAdvice(){
+//        Logger.info("writting Log#3");
+//    }
+//
 
 //
 //    @Pointcut("execution (* get*())")
