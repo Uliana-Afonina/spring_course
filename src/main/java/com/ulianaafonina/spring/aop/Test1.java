@@ -7,8 +7,9 @@ public class Test1 {
         AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(com.ulianaafonina.spring.aop.MyConfig.class);
 
         UniversityLibrary universityLibrary = context.getBean("universityLibraryBean" , UniversityLibrary.class);
-        Book book = context.getBean("book", Book.class);
-        universityLibrary.getBook(book);
+//        Book book = context.getBean("book", Book.class);
+        universityLibrary.getBook();
+        universityLibrary.getMagazine();
 
 //        System.out.println( "\n" + book.getName());
 
