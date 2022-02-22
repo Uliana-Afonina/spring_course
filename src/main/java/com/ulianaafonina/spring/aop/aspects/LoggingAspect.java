@@ -1,8 +1,11 @@
 package com.ulianaafonina.spring.aop.aspects;
 
+import org.aspectj.lang.JoinPoint;
+import org.aspectj.lang.Signature;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
+import org.aspectj.lang.reflect.MethodSignature;
 import org.pmw.tinylog.Logger;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
@@ -63,9 +66,18 @@ public class LoggingAspect {
 
 
 
-    @Before("com.ulianaafonina.spring.aop.aspects.MyPointcuts.allGetMethods()")
-    public void beforeGetLoggingAdvice() {
+    @Before("com.ulianaafonina.spring.aop.aspects.MyPointcuts.allAddMethods()")
+    public void beforeAddLoggingAdvice(JoinPoint joinPoint) {
+
+        MethodSignature methodSignature = (MethodSignature) joinPoint.getSignature();
+        System.out.println("methodSignature: " + methodSignature);
+        System.out.println("methodSignature.getMethod: " + methodSignature.getMethod());
+        System.out.println("methodSignature.getReturnType: " + methodSignature.getReturnType());
+        System.out.println("methodSignature.getName: " + methodSignature.getName());
+
+
         Logger.info("Логирование попытки получить книгу/журнал.");
+        System.out.println("---------------------------------------------------");
     }
 
 
