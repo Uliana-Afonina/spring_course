@@ -37,8 +37,8 @@ public class UniversityLoggingAspect {
 //        Logger.info("Логируем получение списка студентов после работы метода getStudents();");
 //    }
 
-    @AfterThrowing("execution (* getStudents())")
-    public void afterThrowingGetStudentsLoggingAdvice(){
-        Logger.info("логируем выброс исключения");
+    @AfterThrowing(pointcut = "execution (* getStudents())", throwing = "exception")
+    public void afterThrowingGetStudentsLoggingAdvice(Throwable exception){
+        Logger.info("логируем выброс исключения" + exception);
     }
 }
