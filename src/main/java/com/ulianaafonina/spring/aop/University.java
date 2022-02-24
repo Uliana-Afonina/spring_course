@@ -20,9 +20,10 @@ public class University {
         students.add(student3);
     }
 
+
     public List<Student> getStudents (){
         Logger.info("Начало работы метода getStudents() ");
-        System.out.println(students.get(3));
+//        System.out.println(students.get(3));
         Logger.info("Информация о студентах: ");
         System.out.println(students);
 //        Logger.info(this::getStudents);
