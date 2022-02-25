@@ -13,6 +13,7 @@ public class UniversityLibrary extends AbstractLibrary {
     }
 
     public String returnBook() {
+        int a = 10/0;
         Logger.info("Возвращаем книгу в UniversityLibrary.");
         return "Война и мир";
     }

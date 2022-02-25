@@ -11,17 +11,22 @@ import org.springframework.stereotype.Component;
 public class NewLoggingAspect {
 
     @Around("execution (public String returnBook())")
-    public Object aroundReturnBookLoggingAdvice (ProceedingJoinPoint proceedingJoinPoint) throws Throwable {
+    public Object aroundReturnBookLoggingAdvice(ProceedingJoinPoint proceedingJoinPoint) throws Throwable {
         Logger.info("В библиотеку пытаются вернуть книгу");
+        Object targetMethodResult;
+        try {
+            targetMethodResult = proceedingJoinPoint.proceed();
 
-        long begin = System.currentTimeMillis();
-        Object targetMethodResult = proceedingJoinPoint.proceed();
+        } catch (ArithmeticException e) {
+            Logger.error(e, "Ошибочка вышла");
+            targetMethodResult = "Неизвестное название книги";
+//            e.printStackTrace("Ошибочка вышла");
+        }
+
 //        targetMethodResult = "Преступление и наказание"; //так лучше не делать
-        long end = System.currentTimeMillis();
 
 
         Logger.info("В библиотеку успешно вернули книгу.");
-        Logger.info("Метод returnBook() выполнил работу за: " + (end-begin) + " миллисекунд");
         return targetMethodResult;
     }
 }
