@@ -4,35 +4,35 @@ import org.pmw.tinylog.Logger;
 import org.springframework.stereotype.Component;
 
 @Component("universityLibraryBean")
-public class UniversityLibrary extends AbstractLibrary{
+public class UniversityLibrary extends AbstractLibrary {
 
-//    @Override
-    public void getBook () {
+    //    @Override
+    public void getBook() {
         Logger.info("Мы берём книгу из UniversityLibrary. ");
         System.out.println("---------------------------------------------------");
     }
 
-    public void returnBook() {
+    public String returnBook() {
         Logger.info("Возвращаем книгу в UniversityLibrary.");
-        System.out.println("---------------------------------------------------");
+        return "Война и мир";
     }
 
-    public void getMagazine () {
+    public void getMagazine() {
         Logger.info("Берём журнал из UniversityLibrary.");
         System.out.println("---------------------------------------------------");
     }
 
-    public void returnMagazine () {
+    public void returnMagazine() {
         Logger.info("Возвращаем журнал в UniversityLibrary.");
         System.out.println("---------------------------------------------------");
     }
 
-    public void addBook (String person_name, Book book) {
+    public void addBook(String person_name, Book book) {
         Logger.info("Мы добавляем книгу в UniversityLibrary. ");
         System.out.println("---------------------------------------------------");
     }
 
-    public void addMagazine () {
+    public void addMagazine() {
         Logger.info("Мы добавляем журнал в UniversityLibrary. ");
         System.out.println("---------------------------------------------------");
     }
