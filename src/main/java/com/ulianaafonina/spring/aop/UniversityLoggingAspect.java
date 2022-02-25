@@ -1,9 +1,6 @@
 package com.ulianaafonina.spring.aop;
 
-import org.aspectj.lang.annotation.AfterReturning;
-import org.aspectj.lang.annotation.AfterThrowing;
-import org.aspectj.lang.annotation.Aspect;
-import org.aspectj.lang.annotation.Before;
+import org.aspectj.lang.annotation.*;
 import org.pmw.tinylog.Logger;
 import org.springframework.stereotype.Component;
 
@@ -37,8 +34,13 @@ public class UniversityLoggingAspect {
 //        Logger.info("Логируем получение списка студентов после работы метода getStudents();");
 //    }
 
-    @AfterThrowing(pointcut = "execution (* getStudents())", throwing = "exception")
-    public void afterThrowingGetStudentsLoggingAdvice(Throwable exception){
-        Logger.info("логируем выброс исключения" + exception);
+//    @AfterThrowing(pointcut = "execution (* getStudents())", throwing = "exception")
+//    public void afterThrowingGetStudentsLoggingAdvice(Throwable exception){
+//        Logger.info("логируем выброс исключения" + exception);
+//    }
+
+    @After("execution (* getStudents())")
+    public  void afterGetStudentsLoggingAdvice () {
+        Logger.info("Логируем нормальное окончание работы метода или выброс исключения.");
     }
 }
