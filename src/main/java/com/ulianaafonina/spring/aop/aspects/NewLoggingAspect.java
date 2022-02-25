@@ -19,7 +19,7 @@ public class NewLoggingAspect {
 
         } catch (ArithmeticException e) {
             Logger.error(e, "Ошибочка вышла");
-            targetMethodResult = "Неизвестное название книги";
+            throw e;
 //            e.printStackTrace("Ошибочка вышла");
         }
 
