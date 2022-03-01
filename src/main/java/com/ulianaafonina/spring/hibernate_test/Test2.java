@@ -7,7 +7,7 @@ public class Test2 {
         daoMySQL daoMySQL = new daoMySQL();
 //        System.out.println(daoMySQL.updateSalaryById(1, 2500));
 //        System.out.println(daoMySQL.updateSalaryByName("Uliana", 1333));
-    daoMySQL.deleteSalaryById(1);
-
+//    daoMySQL.deleteEmployeeById(1);
+        daoMySQL.deleteEmployeeByHQLQuery("Аnn");
     }
 }
