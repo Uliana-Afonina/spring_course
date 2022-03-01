@@ -83,5 +83,20 @@ public class daoMySQL {
         }
     }
 
+    public Employee updateSalaryById(int id, int newSalary) {
+        try (SessionFactory factory = getFactory()) { // factory нужно закрывать в любом случае, даже если вылезет exception, поэтому используем try with resources
+
+            Session session = factory.getCurrentSession(); //подключение к БД, живёт недолго (ровно чтоб получить данные из БД), потом закрываем её
+
+            session.beginTransaction(); //открываем транзакцию
+            Employee employee = session.get(Employee.class, id);
+            employee.setSalary(newSalary);
+            session.getTransaction().commit(); //закрыли транзакцию
+
+            System.out.println(employee);
+            Logger.info("Запись успешно получена из таблицы employees.");
+            return employee;
+        }
+    }
 
 }
