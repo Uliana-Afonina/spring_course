@@ -35,5 +35,34 @@ public class daoMySQL {
         }
     }
 
+    public void updateEmailById(int id, String email) {
+        try (SessionFactory factory = getFactory()) { // factory нужно закрывать в любом случае, даже если вылезет exception, поэтому используем try with resources
+
+            Session session = factory.getCurrentSession(); //подключение к БД, живёт недолго (ровно чтоб получить данные из БД), потом закрываем её
+
+            session.beginTransaction(); //открываем транзакцию
+            Detail detail = session.get(Detail.class, id);
+            detail.setEmail(email);
+            session.getTransaction().commit(); //закрыли транзакцию
+
+            Logger.info("Запись успешно изменена.");
+        }
+    }
+    public void getDetailByEmployeeId(int id) {
+        try (SessionFactory factory = getFactory()) { // factory нужно закрывать в любом случае, даже если вылезет exception, поэтому используем try with resources
+
+            Session session = factory.getCurrentSession(); //подключение к БД, живёт недолго (ровно чтоб получить данные из БД), потом закрываем её
+
+            session.beginTransaction(); //открываем транзакцию
+
+            Employee employee = session.get(Employee.class, 1);
+            System.out.println(employee.getEmpDetail());
+
+            session.getTransaction().commit(); //закрыли транзакцию
+
+            Logger.info("Запись успешно изменена.");
+        }
+    }
+
 
 }
