@@ -1,6 +1,4 @@
-package com.ulianaafonina.spring.hibernate_test;
-
-import com.ulianaafonina.spring.hibernate_test.entity.Employee;
+package com.ulianaafonina.spring.hibernate_tests.hibernate_test;
 
 public class Test2 {
     public static void main(String[] args) {

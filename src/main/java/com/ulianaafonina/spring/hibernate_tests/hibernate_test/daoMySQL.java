@@ -1,6 +1,6 @@
-package com.ulianaafonina.spring.hibernate_test;
+package com.ulianaafonina.spring.hibernate_tests.hibernate_test;
 
-import com.ulianaafonina.spring.hibernate_test.entity.Employee;
+import com.ulianaafonina.spring.hibernate_tests.hibernate_test.entity.Employee;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;

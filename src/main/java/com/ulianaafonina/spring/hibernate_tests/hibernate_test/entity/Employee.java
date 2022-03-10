@@ -1,4 +1,4 @@
-package com.ulianaafonina.spring.hibernate_test_2.entity;
+package com.ulianaafonina.spring.hibernate_tests.hibernate_test.entity;
 
 import javax.persistence.*;
 
@@ -21,11 +21,6 @@ public class Employee {
 
     @Column(name = "salary")
     private int salary;
-
-    @OneToOne(cascade = CascadeType.ALL) //по умолчанию cascade не работает. Cascade - это связь сущностей. К примеру, если удалить
-                                         // сущность Employee, то сущность Details для него уже не понадобится. И она тоже удалится (если cascade указан)
-    @JoinColumn(name = "details_id")
-    private Detail empDetail;
 
     public Employee() {
     }
