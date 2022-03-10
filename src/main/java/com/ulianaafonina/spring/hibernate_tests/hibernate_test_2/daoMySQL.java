@@ -84,5 +84,21 @@ public class daoMySQL {
         }
     }
 
+    public void insertRowInEmployeesAndDetails(Employee employee, Detail detail) {
+        try (SessionFactory factory = getFactory();
+             Session session = factory.getCurrentSession();) { // factory нужно закрывать в любом случае, даже если вылезет exception, поэтому используем try with resources
 
+            //подключение к БД, живёт недолго (ровно чтоб получить данные из БД), потом закрываем её
+
+            employee.setEmpDetail(detail); //работнику добавить детали
+            detail.setEmployee(employee); // деталям добавить работника
+
+            session.beginTransaction(); //открываем транзакцию
+            session.save(detail); //добавили в БД объект employee (details добавится тоже благодаря cascade)
+            session.getTransaction().commit(); //закрыли транзакцию
+
+//            System.out.println(employee);
+            Logger.info("Запись успешно добавлена в таблицу employees.");
+        }
+    }
 }
