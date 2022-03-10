@@ -1,6 +1,6 @@
-package com.ulianaafonina.spring.hibernate_test;
+package com.ulianaafonina.spring.hibernate_tests.hibernate_test;
 
-import com.ulianaafonina.spring.hibernate_test.entity.Employee;
+import com.ulianaafonina.spring.hibernate_tests.hibernate_test.entity.Employee;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
@@ -94,10 +94,11 @@ public class daoMySQL {
             session.getTransaction().commit(); //закрыли транзакцию
 
             System.out.println(employee);
-            Logger.info("Запись успешно получена из таблицы employees.");
+            Logger.info("Запись успешно изменена.");
             return employee;
         }
     }
+
     public List<Employee> updateSalaryByName(String name, int newSalary) {
         try (SessionFactory factory = getFactory()) { // factory нужно закрывать в любом случае, даже если вылезет exception, поэтому используем try with resources
 
@@ -109,8 +110,35 @@ public class daoMySQL {
                     .getResultList();
             session.getTransaction().commit(); //закрыли транзакцию
 
-            Logger.info("Запись успешно получена из таблицы employees.");
+            Logger.info("Запись успешно изменена.");
             return employees;
+        }
+    }
+
+    public void deleteEmployeeById(int id) {
+        try (SessionFactory factory = getFactory()) { // factory нужно закрывать в любом случае, даже если вылезет exception, поэтому используем try with resources
+
+            Session session = factory.getCurrentSession(); //подключение к БД, живёт недолго (ровно чтоб получить данные из БД), потом закрываем её
+
+            session.beginTransaction(); //открываем транзакцию
+            Employee employee = session.get(Employee.class, id);
+            session.delete(employee);
+            session.getTransaction().commit(); //закрыли транзакцию
+
+            System.out.println(employee);
+            Logger.info("Запись успешно удалена из таблицы employees.");
+        }
+    }
+    public void deleteEmployeeByHQLQuery(String name) {
+        try (SessionFactory factory = getFactory()) { // factory нужно закрывать в любом случае, даже если вылезет exception, поэтому используем try with resources
+
+            Session session = factory.getCurrentSession(); //подключение к БД, живёт недолго (ровно чтоб получить данные из БД), потом закрываем её
+
+            session.beginTransaction(); //открываем транзакцию
+            session.createQuery("delete Employee where name='" + name + "'").executeUpdate();
+            session.getTransaction().commit(); //закрыли транзакцию
+
+            Logger.info("Запись успешно удалена из таблицы employees.");
         }
     }
 
