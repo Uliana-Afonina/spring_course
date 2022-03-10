@@ -135,8 +135,6 @@ public class daoMySQL {
             Session session = factory.getCurrentSession(); //подключение к БД, живёт недолго (ровно чтоб получить данные из БД), потом закрываем её
 
             session.beginTransaction(); //открываем транзакцию
-//            Employee employee = session.get(Employee.class, id);
-//            session.delete(employee);
             session.createQuery("delete Employee where name='" + name + "'").executeUpdate();
             session.getTransaction().commit(); //закрыли транзакцию
 
