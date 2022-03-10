@@ -7,8 +7,6 @@ import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import org.pmw.tinylog.Logger;
 
-import java.util.List;
-
 public class daoMySQL {
 
     private SessionFactory getFactory() {
@@ -100,5 +98,21 @@ public class daoMySQL {
 //            System.out.println(employee);
             Logger.info("Запись успешно добавлена в таблицу employees.");
         }
+    }
+
+    public Employee getEmployeeByDetails(int id) {
+        Employee employee;
+        try (SessionFactory factory = getFactory();
+             Session session = factory.getCurrentSession();) { // factory нужно закрывать в любом случае, даже если вылезет exception, поэтому используем try with resources
+
+            session.beginTransaction(); //открываем транзакцию
+            Detail detail = session.get(Detail.class, id);
+            employee = detail.getEmployee();
+            session.getTransaction().commit(); //закрыли транзакцию
+
+//            System.out.println(employee);
+            Logger.info("Запись успешно добавлена в таблицу employees.");
+        }
+        return employee;
     }
 }

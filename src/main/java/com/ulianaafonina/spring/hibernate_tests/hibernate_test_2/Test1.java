@@ -11,6 +11,8 @@ public class Test1 {
 //        daoMySQL.insertRowInEmployees(employee, detail);
 //        daoMySQL.updateEmailById(1, "afonina6233@gmail.com");
 //        daoMySQL.deleteEmployeeById(2);
-        daoMySQL.insertRowInEmployeesAndDetails(employee, detail);
+//        daoMySQL.insertRowInEmployeesAndDetails(employee, detail);
+        Employee employee2 = daoMySQL.getEmployeeByDetails(4);
+        System.out.println(employee2);
     }
 }
