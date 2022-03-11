@@ -115,4 +115,20 @@ public class daoMySQL {
         }
         return employee;
     }
+    public void deleteEmployeeByDetails(int id) {
+        Employee employee;
+        try (SessionFactory factory = getFactory();
+             Session session = factory.getCurrentSession();) { // factory нужно закрывать в любом случае, даже если вылезет exception, поэтому используем try with resources
+
+            session.beginTransaction(); //открываем транзакцию
+            Detail detail = session.get(Detail.class, id);
+            detail.getEmployee().setEmpDetail(null); //разрушаем связь foreignKey из Employee с primaryKey из Detail.
+                                                        // Можем удалить детали работника без удаления работника
+            session.delete(detail);
+            session.getTransaction().commit(); //закрыли транзакцию
+
+//            System.out.println(employee);
+            Logger.info("Запись успешно добавлена в таблицу employees.");
+        }
+    }
 }

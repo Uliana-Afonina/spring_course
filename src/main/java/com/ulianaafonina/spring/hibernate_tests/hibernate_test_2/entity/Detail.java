@@ -21,7 +21,7 @@ public class Detail {
     @Column(name = "email")
     private String email;
 
-    @OneToOne(mappedBy = "empDetail", cascade = CascadeType.ALL) //@JoinColumn(name = "id") не нужно, т.к. уже есть в Employee
+    @OneToOne(mappedBy = "empDetail", cascade = {CascadeType.PERSIST, CascadeType.REFRESH}) //@JoinColumn(name = "id") не нужно, т.к. уже есть в Employee
     private Employee employee;
 
     public Detail() {
