@@ -21,12 +21,22 @@ public class Detail {
     @Column(name = "email")
     private String email;
 
+    @OneToOne(mappedBy = "empDetail", cascade = {CascadeType.PERSIST, CascadeType.REFRESH}) //@JoinColumn(name = "id") не нужно, т.к. уже есть в Employee
+    private Employee employee;
 
     public Detail() {
     }
 
     public int getId() {
         return id;
+    }
+
+    public Employee getEmployee() {
+        return employee;
+    }
+
+    public void setEmployee(Employee employee) {
+        this.employee = employee;
     }
 
     @Override
