@@ -1,4 +1,4 @@
-package com.ulianaafonina.spring.hibernate_tests.hibernate_test_2.entity;
+package com.ulianaafonina.spring.hibernate_tests.hibernate_one_to_one.entity;
 
 import javax.persistence.*;
 
