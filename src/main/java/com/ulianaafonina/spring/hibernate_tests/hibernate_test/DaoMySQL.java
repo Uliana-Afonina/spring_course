@@ -1,8 +1,8 @@
 package com.ulianaafonina.spring.hibernate_tests.hibernate_test;
 
 import com.ulianaafonina.spring.hibernate_tests.AbstractDaoMSQL;
-import com.ulianaafonina.spring.hibernate_tests.GeneralDaoSQL;
-import com.ulianaafonina.spring.hibernate_tests.hibernate_test.entity.Employee;
+import com.ulianaafonina.spring.hibernate_tests.hibernate_one_to_one.entity.Detail;
+import com.ulianaafonina.spring.hibernate_tests.hibernate_one_to_one.entity.Employee;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
@@ -10,7 +10,7 @@ import org.pmw.tinylog.Logger;
 
 import java.util.List;
 
-public class DaoMySQL extends AbstractDaoMSQL implements GeneralDaoSQL {
+public class DaoMySQL extends AbstractDaoMSQL{
 
     public int insertRowInEmployees(Employee employee) {
         try (SessionFactory factory = getFactory()) { // factory нужно закрывать в любом случае, даже если вылезет exception, поэтому используем try with resources
@@ -137,4 +137,11 @@ public class DaoMySQL extends AbstractDaoMSQL implements GeneralDaoSQL {
         }
     }
 
+    public SessionFactory getFactory() {
+        return new Configuration() //можем переиспользовать factory потом во всём приложении
+                .configure("hibernate.cfg.xml") //на основании какого конфигурационного файла будет строиться сессия с БД. Файл в пакете resources
+                .addAnnotatedClass(Employee.class) //Employee.class имеет аннотации для работы с БД
+                .addAnnotatedClass(Detail.class) //Detail.class имеет аннотации для работы с БД
+                .buildSessionFactory();
+    }
 }
