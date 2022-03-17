@@ -20,7 +20,7 @@ public class Employee {
     private int salary;
 
     //если речь идёт о @ManyToOne, то Hibernate понимает, что foreignKey находится в таблице, которая отвечает за Many
-    @ManyToOne(cascade = CascadeType.ALL) //много работников могут работать в одном департаменте
+    @ManyToOne(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH}) //много работников могут работать в одном департаменте
     @JoinColumn(name = "department_id") //foreignKey
     private Department department;
 

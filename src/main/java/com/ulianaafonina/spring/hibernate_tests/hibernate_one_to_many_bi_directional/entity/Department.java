@@ -24,7 +24,8 @@ public class Department {
     @Column(name = "min_salary")
     private int minSalary;
 
-    @OneToMany (cascade = CascadeType.ALL, mappedBy = "department") //указать название поля из класса Employee, связанного с классом Department
+    @OneToMany (cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH},
+            mappedBy = "department") //указать название поля из класса Employee, связанного с классом Department
     private List<Employee> employees;
 
     public Department() {
