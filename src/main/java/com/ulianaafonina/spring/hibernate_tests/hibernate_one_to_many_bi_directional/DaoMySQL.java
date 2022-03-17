@@ -38,4 +38,34 @@ public class DaoMySQL extends AbstractDaoMSQL {
 
         }
     }
+
+    public void getDepartment(int id) {
+        try (SessionFactory factory = getFactory()) { // factory нужно закрывать в любом случае, даже если вылезет exception, поэтому используем try with resources
+
+            Session session = factory.getCurrentSession(); //подключение к БД, живёт недолго (ровно чтоб получить данные из БД), потом закрываем её
+
+            session.beginTransaction(); //открываем транзакцию
+            Department department = session.get(Department.class, id);
+            System.out.println(department);
+            System.out.println(department.getEmployees());
+            session.getTransaction().commit(); //закрыли транзакцию
+            System.out.println("Done!");
+
+        }
+    }
+
+    public void getEmployee(int id) {
+        try (SessionFactory factory = getFactory()) { // factory нужно закрывать в любом случае, даже если вылезет exception, поэтому используем try with resources
+
+            Session session = factory.getCurrentSession(); //подключение к БД, живёт недолго (ровно чтоб получить данные из БД), потом закрываем её
+
+            session.beginTransaction(); //открываем транзакцию
+            Employee employee = session.get(Employee.class, id);
+            System.out.println(employee);
+            System.out.println(employee.getDepartment());
+            session.getTransaction().commit(); //закрыли транзакцию
+            System.out.println("Done!");
+
+        }
+    }
 }
