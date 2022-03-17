@@ -1,11 +1,8 @@
-package com.ulianaafonina.spring.hibernate_tests.hibernate_test_2;
-
-import com.ulianaafonina.spring.hibernate_tests.hibernate_test_2.entity.Detail;
-import com.ulianaafonina.spring.hibernate_tests.hibernate_test_2.entity.Employee;
+package com.ulianaafonina.spring.hibernate_tests.hibernate_one_to_one;
 
 public class Test1 {
     public static void main(String[] args) {
-        daoMySQL daoMySQL = new daoMySQL();
+        DaoMySQL daoMySQL = new DaoMySQL();
 //        Employee employee = new Employee("Grigoriy", "Fedorov", "HR", 900);
 //        Detail detail = new Detail("Samara", "876", "grisha@gmail.com");
 //        daoMySQL.insertRowInEmployees(employee, detail);

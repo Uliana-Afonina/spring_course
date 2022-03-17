@@ -1,13 +1,13 @@
 package com.ulianaafonina.spring.hibernate_tests.hibernate_test;
 
-import com.ulianaafonina.spring.hibernate_tests.hibernate_test.entity.Employee;
+import com.ulianaafonina.spring.hibernate_tests.hibernate_one_to_one.entity.Employee;
 
 import java.util.List;
 
 public class Test1 {
     public static void main(String[] args) {
 //        Employee employee1 = new Employee("Аnn", "Ffa", "IT", 520);//id будет генерироваться автоматически
-        daoMySQL daoMySQL = new daoMySQL();
+        DaoMySQL daoMySQL = new DaoMySQL();
 //        List<Employee> employees = daoMySQL.getAllEmployees();
 //        List<Employee> employees2 = daoMySQL.getEmployeesByName("Аnn");
         List<Employee> employees3 = daoMySQL.getEmployeesByNameAndSalary("Аnn",510);
