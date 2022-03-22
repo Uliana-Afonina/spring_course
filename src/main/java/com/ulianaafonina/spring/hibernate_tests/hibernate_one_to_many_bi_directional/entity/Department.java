@@ -24,21 +24,22 @@ public class Department {
     @Column(name = "min_salary")
     private int minSalary;
 
-    @OneToMany (cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH},
-            mappedBy = "department") //указать название поля из класса Employee, связанного с классом Department
+    @OneToMany(cascade = CascadeType.ALL
+            , mappedBy = "department"
+            , fetch = FetchType.LAZY) //указать название поля из класса Employee, связанного с классом Department
     private List<Employee> employees;
 
     public Department() {
     }
 
-    public Department(String departmentName, int maxSalary, int minSalary) {
+    public Department(String departmentName, int minSalary, int maxSalary) {
         this.departmentName = departmentName;
         this.maxSalary = maxSalary;
         this.minSalary = minSalary;
     }
 
-    public void addEmployeeToDepartment (Employee employee) {
-        if (employees==null) {
+    public void addEmployeeToDepartment(Employee employee) {
+        if (employees == null) {
             employees = new ArrayList<>();
         }
         employees.add(employee);
