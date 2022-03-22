@@ -6,6 +6,6 @@ public class Test1 {
 //        daoMySQL.addEmployeesToDepartment();
 //        daoMySQL.getDepartment(3);
 //        daoMySQL.deleteEmployee(4);
-        daoMySQL.deleteDepartment(3);
+        daoMySQL.deleteDepartment(2);
     }
 }

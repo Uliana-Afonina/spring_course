@@ -24,12 +24,14 @@ public class DaoMySQL extends AbstractDaoMSQL {
 
             Session session = factory.getCurrentSession(); //подключение к БД, живёт недолго (ровно чтоб получить данные из БД), потом закрываем её
 
-            Department department = new Department("IT", 300, 1200);
+            Department department = new Department("Sales", 800, 1500);
             Employee employee1 = new Employee("Uliana", "Afonina", 800);
-            Employee employee2 = new Employee("Andrew", "Valiev", 750);
+            Employee employee2 = new Employee("Andrew", "Valiev", 1500);
+            Employee employee3 = new Employee("Anton", "Sidorov", 1200);
 
             department.addEmployeeToDepartment(employee1);
             department.addEmployeeToDepartment(employee2);
+            department.addEmployeeToDepartment(employee3);
 
             session.beginTransaction(); //открываем транзакцию
             session.save(department);
@@ -45,9 +47,16 @@ public class DaoMySQL extends AbstractDaoMSQL {
             Session session = factory.getCurrentSession(); //подключение к БД, живёт недолго (ровно чтоб получить данные из БД), потом закрываем её
 
             session.beginTransaction(); //открываем транзакцию
+
+            System.out.println("Get department");
             Department department = session.get(Department.class, id);
+
+            System.out.println("Show department");
             System.out.println(department);
+
+            System.out.println("Show employees of the department");
             System.out.println(department.getEmployees());
+
             session.getTransaction().commit(); //закрыли транзакцию
             System.out.println("Done!");
 
