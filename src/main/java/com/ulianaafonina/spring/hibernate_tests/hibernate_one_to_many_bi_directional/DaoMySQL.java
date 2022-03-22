@@ -53,11 +53,13 @@ public class DaoMySQL extends AbstractDaoMSQL {
 
             System.out.println("Show department");
             System.out.println(department);
+            System.out.println("Подгрузим работников");
+            department.getEmployees().get(0);
+
+            session.getTransaction().commit(); //закрыли транзакцию
 
             System.out.println("Show employees of the department");
             System.out.println(department.getEmployees());
-
-            session.getTransaction().commit(); //закрыли транзакцию
             System.out.println("Done!");
 
         }
