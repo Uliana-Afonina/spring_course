@@ -9,7 +9,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import org.pmw.tinylog.Logger;
 
-public class DaoMySQL extends AbstractDaoMSQL implements GeneralDaoSQL {
+public class DaoMySQL extends AbstractDaoMSQL{
 
     public void insertRowInEmployees(Employee employee, Detail detail) {
         try (SessionFactory factory = getFactory()) { // factory нужно закрывать в любом случае, даже если вылезет exception, поэтому используем try with resources

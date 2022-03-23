@@ -1,9 +1,8 @@
 package com.ulianaafonina.spring.hibernate_tests.hibernate_many_to_many.entity;
 
-import javax.management.monitor.GaugeMonitor;
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "children")
@@ -34,18 +33,18 @@ public class Child {
             , joinColumns = @JoinColumn(name = "child_id")
             , inverseJoinColumns = @JoinColumn(name = "section_id")
     )
-    private List<Section> sections;
+    private Set<Section> sections;
 
     public void addSectionToChild(Section section) {
         if (sections == null) {
-            sections = new ArrayList<>();
+            sections = new LinkedHashSet<>();
         }
         sections.add(section);
     }
 
-    public Child(int age, String firstName) {
-        this.age = age;
+    public Child(String firstName, int age) {
         this.firstName = firstName;
+        this.age = age;
     }
 
     public Child() {
@@ -75,11 +74,11 @@ public class Child {
         this.firstName = firstName;
     }
 
-    public List<Section> getSections() {
+    public Set<Section> getSections() {
         return sections;
     }
 
-    public void setSections(List<Section> sections) {
+    public void setSections(Set<Section> sections) {
         this.sections = sections;
     }
 }
