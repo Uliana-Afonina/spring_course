@@ -121,4 +121,19 @@ public class DaoMySQL extends AbstractDaoMSQL {
             System.out.println("Done!");
         }
     }
+
+    public void deleteChild(int id) {
+        try (SessionFactory factory = getFactory();
+             Session session = factory.getCurrentSession();) { // factory нужно закрывать в любом случае, даже если вылезет exception, поэтому используем try with resources
+            //подключение к БД, живёт недолго (ровно чтоб получить данные из БД), потом закрываем её
+
+            session.beginTransaction(); //открываем транзакцию
+
+            Child child = session.get(Child.class, id);
+            session.delete(child);
+
+            session.getTransaction().commit(); //закрыли транзакцию
+            System.out.println("Done!");
+        }
+    }
 }
