@@ -27,13 +27,15 @@ public class DaoMySQL extends AbstractDaoMSQL {
             Child child2 = new Child("Masha", 7);
             Child child3 = new Child("Vasya", 6);
 
-            section1.addChildToSection(child1);
-            section1.addChildToSection(child2);
-            section1.addChildToSection(child3);
-
             session.beginTransaction(); //открываем транзакцию
 
             session.save(section1);
+            section1.addChildToSection(child1);
+            section1.addChildToSection(child2);
+            section1.addChildToSection(child3);
+            session.save(child1);
+            session.save(child2);
+            session.save(child3);
 
             session.getTransaction().commit(); //закрыли транзакцию
             System.out.println("Done!");
@@ -103,6 +105,22 @@ public class DaoMySQL extends AbstractDaoMSQL {
             Child child = session.get(Child.class, 4);
             System.out.println(child);
             System.out.println(child.getSections());
+            session.getTransaction().commit(); //закрыли транзакцию
+            System.out.println("Done!");
+        }
+    }
+
+    public void deleteSection(int id) {
+        try (SessionFactory factory = getFactory();
+             Session session = factory.getCurrentSession();) { // factory нужно закрывать в любом случае, даже если вылезет exception, поэтому используем try with resources
+            //подключение к БД, живёт недолго (ровно чтоб получить данные из БД), потом закрываем её
+
+
+            session.beginTransaction(); //открываем транзакцию
+
+            Section section = session.get(Section.class, id);
+            session.delete(section);
+
             session.getTransaction().commit(); //закрыли транзакцию
             System.out.println("Done!");
         }
