@@ -7,6 +7,8 @@ public class Test {
 //        daoMySQL.addChild();
 //         daoMySQL.cleanTable();
 //        daoMySQL.getSection();
-        daoMySQL.getChild();
+//        daoMySQL.getChild();
+//        daoMySQL.deleteSection(10);
+        daoMySQL.deleteChild(5);
     }
 }
